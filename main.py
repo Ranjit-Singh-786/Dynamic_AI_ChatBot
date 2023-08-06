@@ -2,6 +2,7 @@ from chatbot.logger import logging
 from chatbot.exception import ChatbotException
 from chatbot.entity import cofig_entity,artifact_entity
 from chatbot.component.data_ingestion import DataIngestion
+from chatbot.component.data_processing import PreProcessed
 import os,sys
 
 data_file_path = "Data/intent.json"
@@ -22,6 +23,9 @@ if __name__=="__main__":
         data_ingestion_obj = DataIngestion(ingestion_config=ingestion_config_obj)
         ingestion_artifact = data_ingestion_obj.Get_Transformed_Data(data_file_path=data_file_path)
 
-        
+        process_config_obj = cofig_entity.Preprocess_config(training_pipeline=training_pipeline_obj)
+        processed_obj = PreProcessed(ingestion_artifact=ingestion_artifact,process_config=process_config_obj)
+        process_artifact = processed_obj.processed_data()
+
     except Exception as e:
         raise ChatbotException(e,sys)

@@ -31,3 +31,12 @@ class DataIngestionConfig:
             # self.tag_dir_path = os.path.join(self.ingestion_dir_path,"tagg")
         except Exception as e:
             raise ChatbotException(e,sys)
+        
+class Preprocess_config:
+    def __init__(self,training_pipeline:TrainingPipelineConfig):
+        self.preprocessed_dir = os.path.join(training_pipeline.artifact_dir,"Preprocessed_data")
+        self.processed_data_file_path = os.path.join(self.preprocessed_dir,"bert_processed_data.pkl")
+        self.processed_labels_file_path = os.path.join(self.preprocessed_dir,"processed_labels.pkl")
+        self.dict_with_label_file_path = os.path.join(self.preprocessed_dir,"label_with_tag.pkl")
+
+        

@@ -1,3 +1,7 @@
 numpy
 pymongo
+tensorflow_hub
+tensorflow
+tensorflow_text
+keras
 -e .

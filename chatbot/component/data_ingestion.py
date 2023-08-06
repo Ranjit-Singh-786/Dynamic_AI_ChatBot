@@ -31,7 +31,7 @@ class DataIngestion:
                             labels.append(label)
             logging.info("Data are extracted in with transformation.")
             data_dictionary = {'no_of_class':len(tag),'tag':tag,'question':pattern,
-                               'label':label,'response':response}
+                               'label':labels,'response':response}
             util.save_object(file_path=self.ingestion_config.transformed_file_path,model_obj=data_dictionary)
             logging.info("tranformed dictionary saved at this location :- {self.ingestion_config.transformed_file_path}")
             Data_ingestion_artifact = artifact_entity.DataIngestionArtifact(transformed_file_path=self.ingestion_config.transformed_file_path)
