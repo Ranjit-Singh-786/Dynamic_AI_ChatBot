@@ -62,7 +62,7 @@ class PreProcessed:
 
             process_artifact = artifact_entity.PreprocessedArtifact(processed_data_file_path=processed_file_path,
                                                                     processed_labels_file_path=label_file_path,
-                                                                    dict_tag_with_label_file_path=dict_tag_with_labl_file_path
+                                                                    dict_tag_with_label_file_path=dict_tag_with_labl_file_path,
                                                                     no_class_or_intent=len(tag))
             return process_artifact
         except Exception as e:
