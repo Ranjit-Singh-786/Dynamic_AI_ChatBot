@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 @dataclass
 class DataIngestionArtifact:
@@ -7,12 +8,13 @@ class DataIngestionArtifact:
 @dataclass
 class PreprocessedArtifact:
     no_class_or_intent:int
-    processed_data_file_path:str
-    processed_labels_file_path:str
+    x_train_processed_file_path:str
+    y_train_processed_file_path:str
     dict_tag_with_label_file_path:str
-
+    vocabulary_size:int
+    maximum_sequence_length:int
 @dataclass
 class ModelTrainerArtifact:
-    bert_process_model_file_path:str
-    bert_base_model_file_path:str
-    bert_base_arch_model_file_path:str
+    model_file_path:str
+    lstm_ytrain_data_file_path:str
+    lstm_dict_with_label:str

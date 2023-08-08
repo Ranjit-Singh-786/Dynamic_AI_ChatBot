@@ -39,6 +39,11 @@ class Preprocess_config:
         self.processed_data_file_path = os.path.join(self.preprocessed_dir,"bert_processed_data.pkl")
         self.processed_labels_file_path = os.path.join(self.preprocessed_dir,"processed_labels.pkl")
         self.dict_with_label_file_path = os.path.join(self.preprocessed_dir,"label_with_tag.pkl")
+        self.lstm_processed_dir = os.path.join(self.preprocessed_dir,"lstm_processed")
+        self.x_train_data_file_path = os.path.join(self.lstm_processed_dir,"x_train_data.pkl")
+        self.y_train_data_file_path = os.path.join(self.lstm_processed_dir,"y_train_data.pkl")
+        self.dict_with_label_file_path_lstm = os.path.join(self.lstm_processed_dir,"label_with_tag.pkl")
+        
 
 class ModelTrainer_config:
     def __init__(self,training_pipeline:TrainingPipelineConfig):
