@@ -145,7 +145,7 @@ class ModelTrainer:
 
             # callback = tf.keras.callbacks.EarlyStopping(monitor="loss",min_delta=0.000001,patience=4,verbose=1)
             # ,callbacks=[callback]
-            history = model.fit(x_train,y_train,epochs=700,verbose=0)
+            history = model.fit(x_train,y_train,epochs=10,verbose=0)
             score = model.evaluate(x_train,y_train) 
             print(f"successfully model trained with {round(score[1]*100)}% accuracy !")
             logging.info(f"successfully model trained with {round(score[1]*100)}% accuracy !")
