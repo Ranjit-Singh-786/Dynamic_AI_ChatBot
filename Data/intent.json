@@ -24,6 +24,10 @@
        "patterns": ["What do you do", "How can you help", "What do you know", "What is your purpose", "How can you help"],
        "responses": ["I can tell you about South Africa", "I can give you interesting facts about South Africa"]
       },
+      {"tag": "india",
+      "patterns": ["What is india", "what do you know about india", "tell me about india", "describe the india", "do you know fact of india"],
+      "responses": ["india is great country","I can tell you about india", "I can give you interesting facts about india"]
+     },
      {"tag": "south_africa_info",
       "patterns": ["South Africa", "What can you tell me about SA", "SA", "Tell me about SA", "What about SA", "What do you know about SA", "Tell me more about SA", "What can you tell me about South Africa", "Tell me about South Africa", "What about South Africa", "What do you know about South Africa", "Tell me more about South Africa"],
       "responses": ["South Africa is the southern most country in Africa, it has a population of more than 59million people and covers an area of 1221 037m2. South Africa has 11 official languages. The currency used in ZAR our South African Rand which trades at about 15ZAR per 1USD."]

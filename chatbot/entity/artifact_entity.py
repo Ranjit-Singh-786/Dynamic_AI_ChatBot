@@ -13,8 +13,16 @@ class PreprocessedArtifact:
     dict_tag_with_label_file_path:str
     vocabulary_size:int
     maximum_sequence_length:int
+
+
 @dataclass
-class ModelTrainerArtifact:
-    model_file_path:str
-    lstm_ytrain_data_file_path:str
-    lstm_dict_with_label:str
+class ModelTrainerArtifact_for_lstm:
+    lstm_model_file_path:str
+    lstm_model_history_log_file_path:str
+
+
+@dataclass
+class ModelTrainerArtifact_for_Bert:
+    bert_process_model_file_path:str
+    bert_base_model_file_path:str
+    bert_base_arch_model_file_path:str

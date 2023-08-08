@@ -1,7 +1,4 @@
 # 2
-# data ingestion will return the list of sentence and lst of labels
-# in this file i will process the data and then 
-# return the emabadding of the data.
 from chatbot.entity import cofig_entity,artifact_entity
 from chatbot.exception import ChatbotException
 # import tensorflow as tf
@@ -73,7 +70,7 @@ class PreProcessed:
         
     def process_data_for_LSTM(self):
         try:
-            logging.info(f"loading the data to perform bert pre-processing.")
+            logging.info(f"loading the data to perform lstm pre-processing.")
             transformed_data_dict = util.load_model(self.ingestion_artifact.transformed_file_path)
             lst_of_questions = transformed_data_dict['question']
 

@@ -26,11 +26,14 @@ if __name__=="__main__":
 
         process_config_obj = cofig_entity.Preprocess_config(training_pipeline=training_pipeline_obj)
         processed_obj = PreProcessed(ingestion_artifact=ingestion_artifact,process_config=process_config_obj)
-        process_artifact = processed_obj.process_data_for_LSTM()
+        process_artifact = processed_obj.process_data_for_LSTM()   # <<< for LSTM model
+        # process_artifact = processed_obj.processed_data_for_bert()   #   <<< for bert model
 
-        # model_trainer_config_obj = cofig_entity.ModelTrainer_config(training_pipeline=training_pipeline_obj)
-        # Model_trainer_obj = ModelTrainer(process_artifact=process_artifact,ingestion_artifact=ingestion_artifact,model_trainer_config=model_trainer_config_obj)
-        # Model_trainer_artifact = Model_trainer_obj.Initiate_model()
+        model_trainer_config_obj = cofig_entity.ModelTrainer_config(training_pipeline=training_pipeline_obj)
+        Model_trainer_obj = ModelTrainer(process_artifact=process_artifact,ingestion_artifact=ingestion_artifact,model_trainer_config=model_trainer_config_obj)
+        LSTM_Model_artifact = Model_trainer_obj.Initiate_LSTM_model()
+        # Bert_Model_trainer_artifact = Model_trainer_obj.Initiate_Bert_model()
+
 
     except Exception as e:
         raise ChatbotException(e,sys)

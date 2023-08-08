@@ -1,5 +1,4 @@
 # 1
-# responsible for loading and transformation of the data
 from chatbot.exception import ChatbotException
 from chatbot.logger import logging
 from chatbot.entity import  cofig_entity,artifact_entity

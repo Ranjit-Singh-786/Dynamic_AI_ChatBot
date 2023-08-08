@@ -52,5 +52,8 @@ class ModelTrainer_config:
         self.bert_base_model_file_path = os.path.join(self.model_trainer_dir,"bert_base_model.pkl")
         self.complete_bert_model_file_path = os.path.join(self.model_trainer_dir,"bert_base_cmplt_arch_model.h5")
 
+        self.lstm_model_file_path = os.path.join(self.model_trainer_dir,"lstm_model.h5")
+        self.model_training_logs = os.path.join(self.model_trainer_dir,"lstm_model_training_history.pkl")
+
 
         
