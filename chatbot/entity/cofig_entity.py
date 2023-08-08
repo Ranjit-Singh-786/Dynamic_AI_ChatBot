@@ -1,3 +1,4 @@
+from typing import Any
 from  chatbot.exception import ChatbotException
 from chatbot.logger import logging
 from datetime import datetime
@@ -38,5 +39,13 @@ class Preprocess_config:
         self.processed_data_file_path = os.path.join(self.preprocessed_dir,"bert_processed_data.pkl")
         self.processed_labels_file_path = os.path.join(self.preprocessed_dir,"processed_labels.pkl")
         self.dict_with_label_file_path = os.path.join(self.preprocessed_dir,"label_with_tag.pkl")
+
+class ModelTrainer_config:
+    def __init__(self,training_pipeline:TrainingPipelineConfig):
+        self.model_trainer_dir = os.path.join(training_pipeline.artifact_dir,"model_training")
+        self.bert_process_model_file_path = os.path.join(self.model_trainer_dir,"bert_process_model.pkl")
+        self.bert_base_model_file_path = os.path.join(self.model_trainer_dir,"bert_base_model.pkl")
+        self.complete_bert_model_file_path = os.path.join(self.model_trainer_dir,"bert_base_cmplt_arch_model.h5")
+
 
         
