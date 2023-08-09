@@ -19,6 +19,8 @@ class PreprocessedArtifact:
 class ModelTrainerArtifact_for_lstm:
     lstm_model_file_path:str
     lstm_model_history_log_file_path:str
+    max_sequence_length:int
+    dict_with_label_file_path:str
 
 
 @dataclass

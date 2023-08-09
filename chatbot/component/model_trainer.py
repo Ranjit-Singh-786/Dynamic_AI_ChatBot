@@ -157,7 +157,9 @@ class ModelTrainer:
 
             ## returnig model trainer artifact
             model_trainer_artifact = artifact_entity.ModelTrainerArtifact_for_lstm(lstm_model_file_path=self.model_trainer_config.lstm_model_file_path,
-                                                                                   lstm_model_history_log_file_path=self.model_trainer_config.model_training_logs)
+                                                                                   lstm_model_history_log_file_path=self.model_trainer_config.model_training_logs,
+                                                                                   max_sequence_length=self.process_artifact.maximum_sequence_length,
+                                                                                   dict_with_label_file_path=self.process_artifact.dict_tag_with_label_file_path)
             return model_trainer_artifact
         except Exception as e:
             raise ChatbotException(e,sys)

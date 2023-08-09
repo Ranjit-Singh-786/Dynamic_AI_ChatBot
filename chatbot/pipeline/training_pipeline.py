@@ -26,7 +26,9 @@ class Training_Pipeline:
             Model_trainer_obj = ModelTrainer(process_artifact=process_artifact,ingestion_artifact=ingestion_artifact,model_trainer_config=model_trainer_config_obj)
             LSTM_Model_artifact = Model_trainer_obj.Initiate_LSTM_model()
             lstm_model_file_path = LSTM_Model_artifact.lstm_model_file_path
+            max_sequence_length = LSTM_Model_artifact.max_sequence_length
+            label_tag_dict_file_path = LSTM_Model_artifact.dict_with_label_file_path
             # Bert_Model_trainer_artifact = Model_trainer_obj.Initiate_Bert_model()
-            return lstm_model_file_path
+            return lstm_model_file_path,max_sequence_length,label_tag_dict_file_path
         except Exception as e:
             raise ChatbotException(e,sys)
