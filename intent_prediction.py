@@ -3,21 +3,25 @@ from chatbot.exception import ChatbotException
 from chatbot.pipeline.training_pipeline import Training_Pipeline
 from chatbot.input_process.process_input_query import Input_Process
 from chatbot.logger import logging
+from chatbot.component.get_response import Get_Response
+from chatbot.entity import cofig_entity,artifact_entity
 import tensorflow as tf
 from chatbot import util
 import numpy as np
 import os,sys
 Training_Pipeline_obj = Training_Pipeline()
+get_response_obj = Get_Response()
 input_processing_obj = Input_Process()
 class Intent_Prediction:
     def __init__(self,change_data_parameter:bool,manually_trained_model:bool):
         self.change_data_parameter = change_data_parameter
         self.manually_trained_model = manually_trained_model
         # self.single_training = single_training
-        self.max_sequence_length = 47
+        self.max_sequence_length = 47        # <<< make dynamic it also
         self.current_lstm_model_file_path = ''
-        self.dict_with_label_file_path = ''
+        self.dict_with_label_file_path = r'C:\Users\Ranjit Singh\Desktop\working project\Dynamic_AI_ChatBot\base_model_artifact\Preprocessed_data\lstm_processed\label_with_tag.pkl'
         self.constant_dict_label = {'greeting': 0, 'goodbye': 1, 'thanks': 2, 'noanswer': 3, 'name': 4, 'options': 5, 'india': 6, 'south_africa_info': 7, 'south_africa_facts': 8}
+        self.transformed_dict_path = r'C:\Users\Ranjit Singh\Desktop\working project\Dynamic_AI_ChatBot\base_model_artifact\Data_ingestion\Transformed\transformed_dict.pkl'
         self.temp = 0
     
     # Training case condition before getting the prediction
@@ -35,7 +39,7 @@ class Intent_Prediction:
 
             if (change_data_parameter == False)and(manually_model_tained == False) and (self.temp == 0):
                 ## need to train condition is True
-                current_trained_lstm_model_file_path , max_sequence_length ,label_tag_dict_file_path = Training_Pipeline_obj.Train_the_model()
+                current_trained_lstm_model_file_path , max_sequence_length ,label_tag_dict_file_path,transformed_dict_file_path = Training_Pipeline_obj.Train_the_model()
                 current_lstm_model = tf.keras.models.load_model(current_trained_lstm_model_file_path)
 
                 # get processing pipeline for utilize your time
@@ -57,6 +61,7 @@ class Intent_Prediction:
                 self.max_sequence_length = max_sequence_length
                 self.current_lstm_model_file_path = current_trained_lstm_model_file_path
                 self.dict_with_label_file_path = label_tag_dict_file_path
+                self.transformed_dict_path = transformed_dict_file_path
                 logging.info(f"successfully get the prediction of intent customized model !")
                 return intents
 
@@ -78,23 +83,19 @@ class Intent_Prediction:
                 for key_name,value in dict_with_label.items():
                     if value == index_of_prediction:
                         intents = key_name
-                logging.info(f"successfully get the prediction of intent customized model :- {intent}")
+                logging.info(f"successfully get the prediction of intent customized model :- {intents}")
                 # to ignore the again and again training of the model
-                return intent
+                return intents
 
 
 
             elif (change_data_parameter != False) or (manually_model_tained != False):
                 # keep the latest pretrained model
-                artifact_path = r"C:\Users\Ranjit Singh\Desktop\working project\Dynamic_AI_ChatBot\artifacts"
-                item = os.listdir(artifact_path)
-                item.sort(reverse=True)
-                latest_model_path = os.path.join(artifact_path,item[0],"model_training","lstm_model.h5")
-                # print(latest_model_path)
-                ## loading the latest trained model
-                
-                latest_lstm_model_frm_artifact = tf.keras.models.load_model(filepath=latest_model_path)
-                logging.info(f"successfully loaded the pretrained model from :- {latest_model_path}")
+                base_model_file_path = r"C:\Users\Ranjit Singh\Desktop\working project\Dynamic_AI_ChatBot\base_model_artifact\model_training\lstm_model.h5"
+
+               # loading the base model 
+                latest_lstm_model_frm_artifact = tf.keras.models.load_model(filepath=base_model_file_path)
+                logging.info(f"successfully loaded the pretrained model from :- {base_model_file_path}")
                 logging.info(f"testing going through with our trained model !")
 
 
@@ -111,7 +112,7 @@ class Intent_Prediction:
                 for key_name,value in dict_with_label.items():
                     if value == index_of_prediction:
                         intents = key_name
-                logging.info(f"successfully get the prediction Through pretrained model {intent}")
+                logging.info(f"successfully get the prediction Through pretrained model {intents}")
                 # to ignore the again and again training of the model
                 
                 return intents
@@ -120,18 +121,25 @@ class Intent_Prediction:
         
 
 
-
-obj = Intent_Prediction(change_data_parameter=False,manually_trained_model=False)
+obj = Intent_Prediction(change_data_parameter=True,manually_trained_model=False)
 obj_without_training = Intent_Prediction(change_data_parameter=True,manually_trained_model=False)
 # obj.temp+=1
 
 intent  = obj.Get_Intent_Preditction(query="See you later")     # goodbye
-
 print(f"See you later :- {intent}")
-
-intent = obj.Get_Intent_Preditction(query="hii there")
-print(intent)
+response = get_response_obj.get_response(transformed_dict_path=obj.transformed_dict_path,
+                                         dict_with_label_path=obj.dict_with_label_file_path,
+                                         intent=intent
+                                         )
 print()
-print(f"prediction without training")
-no_training_intent = obj_without_training.Get_Intent_Preditction(query="How can you help")
-print(f"How can you help :- {no_training_intent}")
+print(response)
+
+
+
+
+# intent = obj.Get_Intent_Preditction(query="hii there")
+# print(intent)
+# print()
+# print(f"prediction without training")
+# no_training_intent = obj_without_training.Get_Intent_Preditction(query="How can you help")
+# print(f"How can you help :- {no_training_intent}")

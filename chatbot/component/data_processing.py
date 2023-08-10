@@ -78,7 +78,7 @@ class PreProcessed:
             lowerize_question = [question.lower() for question in lst_of_questions]
 
             # one hot encoding x_train_data
-            vocabulary_size = 10000
+            vocabulary_size = 5000
             one_hoted = [one_hot(sentence,vocabulary_size) for sentence in lowerize_question]
             x_train_data  = pad_sequences(one_hoted,padding='post',maxlen=maximum_sequence_length)
 
@@ -112,7 +112,8 @@ class PreProcessed:
                                                                     y_train_processed_file_path=self.process_config.y_train_data_file_path,
                                                                     dict_tag_with_label_file_path=self.process_config.dict_with_label_file_path_lstm,
                                                                     vocabulary_size=vocabulary_size,
-                                                                    maximum_sequence_length=maximum_sequence_length)
+                                                                    maximum_sequence_length=maximum_sequence_length,
+                                                                    transformed_data_dict_file_path = self.ingestion_artifact.transformed_file_path)
             return process_artifact
         except Exception as e:
             raise ChatbotException(e,sys)

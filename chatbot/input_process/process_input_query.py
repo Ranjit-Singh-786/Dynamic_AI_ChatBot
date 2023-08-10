@@ -18,7 +18,7 @@ class Input_Process:
             query_in_lst = [query]
             lowerize_question = [question.lower() for question in query_in_lst]
 
-            vocabulary_size = 10000
+            vocabulary_size = 5000
             one_hoted = [one_hot(sentence,vocabulary_size) for sentence in lowerize_question]
             x_test_data  = pad_sequences(one_hoted,padding='post',maxlen=max_sequence_length)
             x_test_data = np.array(x_test_data)

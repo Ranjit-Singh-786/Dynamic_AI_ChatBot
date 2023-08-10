@@ -13,6 +13,7 @@ class PreprocessedArtifact:
     dict_tag_with_label_file_path:str
     vocabulary_size:int
     maximum_sequence_length:int
+    transformed_data_dict_file_path:str
 
 
 @dataclass
@@ -21,6 +22,7 @@ class ModelTrainerArtifact_for_lstm:
     lstm_model_history_log_file_path:str
     max_sequence_length:int
     dict_with_label_file_path:str
+    transformed_dict_file_path:str
 
 
 @dataclass

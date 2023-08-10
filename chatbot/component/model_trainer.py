@@ -145,7 +145,7 @@ class ModelTrainer:
 
             # callback = tf.keras.callbacks.EarlyStopping(monitor="loss",min_delta=0.000001,patience=4,verbose=1)
             # ,callbacks=[callback]
-            history = model.fit(x_train,y_train,epochs=10,verbose=0)
+            history = model.fit(x_train,y_train,epochs=700,verbose=1)
             score = model.evaluate(x_train,y_train) 
             print(f"successfully model trained with {round(score[1]*100)}% accuracy !")
             logging.info(f"successfully model trained with {round(score[1]*100)}% accuracy !")
@@ -159,7 +159,8 @@ class ModelTrainer:
             model_trainer_artifact = artifact_entity.ModelTrainerArtifact_for_lstm(lstm_model_file_path=self.model_trainer_config.lstm_model_file_path,
                                                                                    lstm_model_history_log_file_path=self.model_trainer_config.model_training_logs,
                                                                                    max_sequence_length=self.process_artifact.maximum_sequence_length,
-                                                                                   dict_with_label_file_path=self.process_artifact.dict_tag_with_label_file_path)
+                                                                                   dict_with_label_file_path=self.process_artifact.dict_tag_with_label_file_path,
+                                                                                   transformed_dict_file_path=self.process_artifact.transformed_data_dict_file_path)
             return model_trainer_artifact
         except Exception as e:
             raise ChatbotException(e,sys)
