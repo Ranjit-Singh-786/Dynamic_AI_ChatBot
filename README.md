@@ -13,6 +13,7 @@ behavior by adjusting dataset parameters, no need to play with coding if chatbot
 pipeline made the changes in chatbot behavior by determine the dataset parametes.</li>
 </ul>
 <br>
+
 ## Fully Customizable Dynamic Chatbot Development
 
 Welcome to my repository where I am excited to share the development journey of a cutting-edge, fully customizable dynamic chatbot, built entirely from the ground up. This project is designed to empower users like you with unparalleled control over your chatbot's behavior.
@@ -29,4 +30,4 @@ Feel free to explore the repository, engage with the code, and witness firsthand
 
 Let's redefine chatbot development, one dataset edit at a time.
 
-<p><b>i am working on this project, some of the component is remaining, but i am trying to build it as soon as possible.<b></p>
+## Thank you 😊
