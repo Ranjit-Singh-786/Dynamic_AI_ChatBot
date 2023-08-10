@@ -16,11 +16,11 @@ pipeline made the changes in chatbot behavior by determine the dataset parametes
 
 ## GUI images with Demo
 <h2>First Image </h2>
-<img src="static/a1.png">
+<img src ="static/a1.png" width = "600" height = "400">
 <br>
 
 <h2>Second Image </h2>
-<img src="static/a2.png">
+<img src ="static/a2.png" width = "600" height = "400">
 
 
 ## Fully Customizable Dynamic Chatbot Development
