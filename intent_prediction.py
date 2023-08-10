@@ -9,6 +9,9 @@ import tensorflow as tf
 from chatbot import util
 import numpy as np
 import os,sys
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
 Training_Pipeline_obj = Training_Pipeline()
 get_response_obj = Get_Response()
 input_processing_obj = Input_Process()
@@ -121,21 +124,18 @@ class Intent_Prediction:
         
 
 
-obj = Intent_Prediction(change_data_parameter=True,manually_trained_model=False)
-obj_without_training = Intent_Prediction(change_data_parameter=True,manually_trained_model=False)
-# obj.temp+=1
+# obj = Intent_Prediction(change_data_parameter=True,manually_trained_model=False)
+# obj_without_training = Intent_Prediction(change_data_parameter=True,manually_trained_model=False)
+# # obj.temp+=1
 
-intent  = obj.Get_Intent_Preditction(query="See you later")     # goodbye
-print(f"See you later :- {intent}")
-response = get_response_obj.get_response(transformed_dict_path=obj.transformed_dict_path,
-                                         dict_with_label_path=obj.dict_with_label_file_path,
-                                         intent=intent
-                                         )
-print()
-print(response)
-
-
-
+# intent  = obj.Get_Intent_Preditction(query="See you later")     # goodbye
+# print(f"See you later :- {intent}")
+# response = get_response_obj.get_response(transformed_dict_path=obj.transformed_dict_path,
+#                                          dict_with_label_path=obj.dict_with_label_file_path,
+#                                          intent=intent
+#                                          )
+# print()
+# print(response)
 
 # intent = obj.Get_Intent_Preditction(query="hii there")
 # print(intent)
@@ -143,3 +143,32 @@ print(response)
 # print(f"prediction without training")
 # no_training_intent = obj_without_training.Get_Intent_Preditction(query="How can you help")
 # print(f"How can you help :- {no_training_intent}")
+
+
+
+
+def get_chatbot_response(user_message):
+    obj_without_training = Intent_Prediction(change_data_parameter=True,manually_trained_model=False)
+    no_training_intent = obj_without_training.Get_Intent_Preditction(query=user_message)
+
+
+    response = get_response_obj.get_response(transformed_dict_path=obj_without_training.transformed_dict_path,
+                                             dict_with_label_path=obj_without_training.dict_with_label_file_path,
+                                             intent=no_training_intent
+                                            )
+    bot_response = response
+    return bot_response
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/get_response', methods=['POST'])
+def get_response():
+    user_message = request.form['user_message']
+    bot_response = get_chatbot_response(user_message)
+    return bot_response
+
+if __name__ == '__main__':
+    app.run(debug=True)

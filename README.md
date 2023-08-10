@@ -1,7 +1,7 @@
 # fully customizable Dynamic chatbot from scratch.
 
  Aim :- Develope an AI-powered chatbot with exceptional flexibility and robustness, enabling easy customization of its behavior to meet
-diverse requirements with minimal effort.
+diverse requirements with minimal effort, utilize the power of natural language processing.
 
 ## Description
 <ul>
@@ -13,6 +13,15 @@ behavior by adjusting dataset parameters, no need to play with coding if chatbot
 pipeline made the changes in chatbot behavior by determine the dataset parametes.</li>
 </ul>
 <br>
+
+## GUI images with Demo
+<h2>First Image </h2>
+<img src="static/a1.png">
+<br>
+
+<h2>Second Image </h2>
+<img src="static/a2.png">
+
 
 ## Fully Customizable Dynamic Chatbot Development
 
@@ -30,4 +39,35 @@ Feel free to explore the repository, engage with the code, and witness firsthand
 
 Let's redefine chatbot development, one dataset edit at a time.
 
-## Thank you 😊
+## To altered the behavior of the ChatBot as per your requirements
+
+<b>Data file path :- Data\intent.json</b>
+
+<p>either you can directly upload your file instead of my 
+"intent.json" file and you can anotate your dataset with in this file. after the data anotation, you will have to follow some commands, to use your chatbot, all are commands and steps are mentioned below 👇
+</p>
+
+## Commands To Execute The Base ChatBot
+<ul>
+<li>clone this repos.</li>
+<li>install all the dependencies</li>
+<li>run the app.py</li>
+
+</ul>
+
+## Commands, if you have altered the dataset parameter
+<ul>
+<li>clone the repos..</li>
+<li>install the dependencies.</li>
+<li>run python train.py</li>
+<li>run python app.py</li>
+</ul>
+
+## commands
+-- pip install -r requirements.txt
+-- python train.py
+-- python app.py
+
+## YOU DON`T NEED TO PLAY WITH CODING, DEVELOPE YOUR CHATBOT😍 WITH IN FEW MINUTES, AND FREE OF COST 😋.
+
+##  🏴‍☠️  THANK YOU  🏴‍☠️
